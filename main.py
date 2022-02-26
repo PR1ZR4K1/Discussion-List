@@ -1,7 +1,9 @@
 import random
 from src.student import Student
 from src.roster import Roster
+from time import time
 
+start = time()
 
 ##############################
 ###     Jaylon Ignacio     ###
@@ -18,35 +20,58 @@ from src.roster import Roster
 
 # How do I get information from 10th student from my Roster that comes from the list
 
+# a = {
+#     "j": {
+#         "Responded To": ["John", "Christian"],
+#     }
+# }
+
+# print(a["j"]["Responded To"])  # -> ["John", "Christian"]
+
 
 def main():
 
-    list_of_students = ["Braylen Ghost", "Kadin Bobby", "Eddie Debbie", "Jaeden John", "Andreas Lexy",
-                        "Brayan Bobby", "Adrian Digs", "Byron Max", "Derrick Brown", "Trevin Andre", "Joshua Ticks", "Dario Luigi", "John Lane", "Alberto Gutierrez"]
+    list_of_students = ["Ashton Holly", "Brielle Monroe", "Gael Elsher", "Evan Gonzalez", "Iris Robinson", "Zoe Brown", "Landon Jones", "Brandon Hernandez", "Olivia Levine", "Jesse Baker",
+                        "Camden Hall", "Jackson Martinez", "Elias May", "Harper West", "Juliette Ellis", "Violet Flores", "Beckham Brown", "Charles Ellis", "Knox Sharpe"]
 
     Rucker = Roster("English", len(list_of_students))
 
-    assigned_one = [random.sample(
-        range(Rucker.max_students), Rucker.max_students)]
-    assigned_two = [random.sample(
-        range(Rucker.max_students), Rucker.max_students)]
+    wrong = True
+    count_tries = 0
 
-    #first_assigned, second_assigned = list_of_students[assigned_one[0][0]]
+    while (wrong):
+        repeat = 0
+        count_tries += 1
+
+        assigned_one = [random.sample(
+            range(Rucker.max_students), Rucker.max_students)]
+        assigned_two = [random.sample(
+            range(Rucker.max_students), Rucker.max_students)]
+        for x in range(Rucker.max_students):
+            if (assigned_two[0][x] == assigned_one[0][x] or assigned_one[0][x] == x or assigned_two[0][x] == x):
+                repeat += 1
+
+        if (repeat == 0):
+            wrong = False
 
     for x in range(Rucker.max_students):
-        first, last = list_of_students[x].split()
+        name = list_of_students[x]
         first_assigned = list_of_students[assigned_one[0][x]]
         second_assigned = list_of_students[assigned_two[0][x]]
 
         Rucker.add_students(
-            Student(first, last, first_assigned, second_assigned))
+            Student(name, first_assigned, second_assigned))
 
-    r_string = f'\t\tHere is the list of your {Rucker.max_students} students and who they are assigned to.\n'
+    r_string = f'It took {count_tries} tries to retrieve this data, but...\n'
+    r_string += f'\t\tHere is the list of your {Rucker.max_students} students and who they are assigned to.\n\n'
     for k in range(Rucker.max_students):
-        r_string += f'\t{Rucker.students[k].first_name} {Rucker.students[k].last_name}: {Rucker.students[k].assigned1} and {Rucker.students[k].assigned2}\n'
+        r_string += f'\t{Rucker.students[k].name}: {Rucker.students[k].assigned1}, {Rucker.students[k].assigned2}\n\n'
 
     print(r_string)
 
 
 if __name__ == "__main__":
     main()
+
+# end = time()
+# print(end-start)

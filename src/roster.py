@@ -20,6 +20,3 @@ class Roster():
         if len(self.students) < self.max_students:
             self.students.append(student)
         return False
-
-    def assign_student(self, student: Student) -> None:
-        print("Nice")
