@@ -31,8 +31,12 @@ start = time()
 
 def main():
 
-    list_of_students = ["Ashton Holly", "Brielle Monroe", "Gael Elsher", "Evan Gonzalez", "Iris Robinson", "Zoe Brown", "Landon Jones", "Brandon Hernandez", "Olivia Levine", "Jesse Baker",
-                        "Camden Hall", "Jackson Martinez", "Elias May", "Harper West", "Juliette Ellis", "Violet Flores", "Beckham Brown", "Charles Ellis", "Knox Sharpe"]
+    names = ("Omar Woods Christopher Drake Aryanna Rubio Ashley Pitts Juliet Clements Janet Werner Ruth Brown Luna Duke Shane Mata Grant Hill Shayla Ashley Lincoln Pineda")
+
+    names = names.split()
+    n = 2
+    list_of_students = tuple(' '.join(names[i:i+n])
+                             for i in range(0, len(names), n))
 
     Rucker = Roster("English", len(list_of_students))
 
